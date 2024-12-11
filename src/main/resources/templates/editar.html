@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <title>Editar Computadora</title>
+    <style>
+        /* Animación para hacer que los elementos se deslicen desde la izquierda */
+        @keyframes slideInFromLeft {
+            0% {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+            100% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        /* Efecto de entrada con animación */
+        .animated-form {
+            animation: slideInFromLeft 1s ease-out;
+        }
+
+        /* Efecto hover para los botones */
+        .btn:hover {
+            background-color: #4CAF50; /* Color verde */
+            transform: translateY(-2px); /* Movimiento hacia arriba */
+            transition: all 0.3s ease-in-out;
+        }
+
+        /* Sombra en los campos de entrada */
+        .form-control {
+            transition: box-shadow 0.3s ease-in-out;
+        }
+
+        .form-control:focus {
+            box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
+        }
+
+        /* Animación del fondo con gradiente en movimiento */
+        body {
+            background: linear-gradient(45deg, #ff6f61, #6a5acd, #ff6347, #00bfff);
+            background-size: 400% 400%;
+            animation: gradientAnimation 15s ease infinite;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+        }
+
+        /* Animación para el fondo */
+        @keyframes gradientAnimation {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* Estilo del contenedor del formulario */
+        .container {
+            background: rgba(255, 255, 255, 0.8); /* Fondo blanco semitransparente */
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            width: 80%;
+            max-width: 600px;
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        /* Efecto de desvanecimiento para el contenedor */
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        /* Título */
+        h1 {
+            animation: fadeInTitle 2s ease-out;
+        }
+
+        /* Desvanecimiento del título */
+        @keyframes fadeInTitle {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5 animated-form">
+        <h1 class="text-center">Editar Computadora Gamer</h1>
+        <form th:action="@{/computadoras/{id}(id=${computadora.id})}" th:object="${computadora}" method="post">
+            <div class="mb-3">
+                <label for="marca" class="form-label">Marca</label>
+                <input type="text" class="form-control" th:field="*{marca}" required />
+            </div>
+            <div class="mb-3">
+                <label for="modelo" class="form-label">Modelo</label>
+                <input type="text" class="form-control" th:field="*{modelo}" required />
+            </div>
+            <div class="mb-3">
+                <label for="procesador" class="form-label">Procesador</label>
+                <input type="text" class="form-control" th:field="*{procesador}" required />
+            </div>
+            <div class="mb-3">
+                <label for="ram" class="form-label">RAM</label>
+                <input type="text" class="form-control" th:field="*{ram}" required />
+            </div>
+            <div class="mb-3">
+                <label for="tarjetaGrafica" class="form-label">Tarjeta Gráfica</label>
+                <input type="text" class="form-control" th:field="*{tarjetaGrafica}" required />
+            </div>
+            <div class="mb-3">
+                <label for="precio" class="form-label">Precio</label>
+                <input type="number" class="form-control" th:field="*{precio}" required />
+            </div>
+            <button type="submit" class="btn btn-success">Actualizar Computadora</button>
+        </form>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
